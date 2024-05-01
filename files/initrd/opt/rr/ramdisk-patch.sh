@@ -73,7 +73,7 @@ echo -n "."
 PLATFORM="$(readModelKey "${MODEL}" "platform")"
 KVER="$(readModelKey "${MODEL}" "productvers.[${PRODUCTVER}].kver")"
 KPRE="$(readModelKey "${MODEL}" "productvers.[${PRODUCTVER}].kpre")"
-RD_COMPRESSED="$(readModelKey "${MODEL}" "productvers.[${PRODUCTVER}].rd-compressed")"
+RD_COMPRESSED="$(readModelKey "${MODEL}" "rd-compressed")"
 
 # Sanity check
 if [ -z "${PLATFORM}" -o -z "${KVER}" ]; then
@@ -113,7 +113,7 @@ while read PE; do
     [ ${RET} -eq 0 ] && break
   done
   [ ${RET} -ne 0 ] && exit 1
-done <<<$(readModelArray "${MODEL}" "productvers.[${PRODUCTVER}].patch")
+done <<<$(readModelArray "${MODEL}" "patch")
 
 # Patch /etc/synoinfo.conf
 echo -n "."

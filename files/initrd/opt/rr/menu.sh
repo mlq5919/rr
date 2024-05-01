@@ -346,7 +346,7 @@ function productversMenu() {
   writeConfigKey "synoinfo" "{}" "${USER_CONFIG_FILE}"
   while IFS=': ' read KEY VALUE; do
     writeConfigKey "synoinfo.\"${KEY}\"" "${VALUE}" "${USER_CONFIG_FILE}"
-  done <<<$(readModelMap "${MODEL}" "productvers.[${PRODUCTVER}].synoinfo")
+  done <<<$(readModelMap "${MODEL}" "synoinfo")
   # Check addons
   PLATFORM="$(readModelKey "${MODEL}" "platform")"
   KVER="$(readModelKey "${MODEL}" "productvers.[${PRODUCTVER}].kver")"
@@ -477,7 +477,7 @@ function ParsePat() {
     writeConfigKey "synoinfo" "{}" "${USER_CONFIG_FILE}"
     while IFS=': ' read KEY VALUE; do
       writeConfigKey "synoinfo.\"${KEY}\"" "${VALUE}" "${USER_CONFIG_FILE}"
-    done <<<$(readModelMap "${MODEL}" "productvers.[${PRODUCTVER}].synoinfo")
+    done <<<$(readModelMap "${MODEL}" "synoinfo")
 
     # Check addons
     PLATFORM="$(readModelKey "${MODEL}" "platform")"
@@ -977,7 +977,7 @@ function cmdlineMenu() {
       ITEMS=""
       while IFS=': ' read KEY VALUE; do
         ITEMS+="${KEY}: ${VALUE}\n"
-      done <<<$(readModelMap "${MODEL}" "productvers.[${PRODUCTVER}].cmdline")
+      done <<<$(readModelMap "${MODEL}" "cmdline")
       DIALOG --title "$(TEXT "Cmdline")" \
         --msgbox "${ITEMS}" 0 0
       ;;
@@ -1870,7 +1870,7 @@ function tryRecoveryDSM() {
       writeConfigKey "synoinfo" "{}" "${USER_CONFIG_FILE}"
       while IFS=': ' read KEY VALUE; do
         writeConfigKey "synoinfo.\"${KEY}\"" "${VALUE}" "${USER_CONFIG_FILE}"
-      done <<<$(readModelMap "${MODEL}" "productvers.[${PRODUCTVER}].synoinfo")
+      done <<<$(readModelMap "${MODEL}" "synoinfo")
 
       # Check addons
       PLATFORM="$(readModelKey "${MODEL}" "platform")"
@@ -2614,7 +2614,7 @@ function advancedMenu() {
       cp -Rf "$(dirname ${WORK_PATH})" "${RDXZ_PATH}/"
       (
         cd "${RDXZ_PATH}"
-        find . 2>/dev/null | cpio -o -H newc -R root:root | xz --check=crc32 >"${RR_RAMDISK_FILE}"
+        find . 2>/dev/null | cpio -o -H newc -R root:root | xz -9 --check=crc32 >"${RR_RAMDISK_FILE}"
       ) || true
       rm -rf "${RDXZ_PATH}"
       DIALOG --title "$(TEXT "Advanced")" \
