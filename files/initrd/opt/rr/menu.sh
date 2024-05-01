@@ -850,7 +850,7 @@ function cmdlineMenu() {
     if [ -n "${MODEL}" ]; then
       echo "s \"$(TEXT "Define SN/MAC")\"" >>"${TMP_PATH}/menu"
     fi
-    echo "m \"$(TEXT "Show model inherent cmdline")\"" >>"${TMP_PATH}/menu"
+    # echo "m \"$(TEXT "Show model inherent cmdline")\"" >>"${TMP_PATH}/menu"
     echo "e \"$(TEXT "Exit")\"" >>"${TMP_PATH}/menu"
     DIALOG --title "$(TEXT "Cmdline")" \
       --menu "$(TEXT "Choose a option")" 0 0 0 --file "${TMP_PATH}/menu" \
@@ -973,14 +973,14 @@ function cmdlineMenu() {
         esac
       done
       ;;
-    m)
-      ITEMS=""
-      while IFS=': ' read KEY VALUE; do
-        ITEMS+="${KEY}: ${VALUE}\n"
-      done <<<$(readModelMap "${MODEL}" "cmdline")
-      DIALOG --title "$(TEXT "Cmdline")" \
-        --msgbox "${ITEMS}" 0 0
-      ;;
+    # m)
+    #   ITEMS=""
+    #   while IFS=': ' read KEY VALUE; do
+    #     ITEMS+="${KEY}: ${VALUE}\n"
+    #   done <<<$(readModelMap "${MODEL}" "cmdline")
+    #   DIALOG --title "$(TEXT "Cmdline")" \
+    #     --msgbox "${ITEMS}" 0 0
+    #   ;;
     e) return ;;
     esac
   done

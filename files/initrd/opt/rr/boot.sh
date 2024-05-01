@@ -143,21 +143,42 @@ CMDLINE['root']="/dev/md0"
 CMDLINE['skip_vender_mac_interfaces']="0,1,2,3,4,5,6,7"
 CMDLINE['loglevel']="15"
 CMDLINE['log_buf_len']="32M"
+CMDLINE["HddHotplug"]="1"
+CMDLINE["elevator"]="elevator"
 
 if [ -n "$(ls /dev/mmcblk* 2>/dev/null)" ] && [ ! "${BUS}" = "mmc" ] && [ ! "${EMMCBOOT}" = "true" ]; then
   [ ! "${CMDLINE['modprobe.blacklist']}" = "" ] && CMDLINE['modprobe.blacklist']+=","
   CMDLINE['modprobe.blacklist']+="sdhci,sdhci_pci,sdhci_acpi"
 fi
 
-if [ "$(readModelKey "${MODEL}" "dt")" = "true" ] && ! echo "epyc7002 purley broadwellnkv2" | grep -wq "$(readModelKey "${MODEL}" "platform")"; then
+DT="$(readModelKey "${MODEL}" "dt")"
+if [ "${DT}" = "true" ]; then
+  CMDLINE["vender_format_version"]="2"
+  CMDLINE["syno_ttyS0"]="serial,0x3f8"
+  CMDLINE["syno_ttyS1"]="serial,0x2f8"
+else
+  CMDLINE["SMBusHddDynamicPower"]="1"
+  CMDLINE["syno_hdd_detect"]="0"
+  CMDLINE["syno_hdd_powerup_seq"]="0"
+  CMDLINE["vender_format_version"]="2"
+fi
+PLATFORM="$(readModelKey "${MODEL}" "platform")"
+PLATFORM=${PLATFORM:-"unknown"}
+if ! echo "epyc7002 purley broadwellnkv2" | grep -wq "${PLATFORM}"; then
   [ ! "${CMDLINE['modprobe.blacklist']}" = "" ] && CMDLINE['modprobe.blacklist']+=","
   CMDLINE['modprobe.blacklist']+="mpt3sas"
 fi
+if echo "epyc7002 apollolake geminilake kvmx64" | grep -wq "${PLATFORM}"; then
+  CMDLINE["intel_iommu"]="igfx_off"
+fi
+if echo "purley broadwellnkv2" | grep -wq "${PLATFORM}"; then
+  CMDLINE["SASmodel"]="1"
+fi
 
-# Read cmdline
-while IFS=': ' read KEY VALUE; do
-  [ -n "${KEY}" ] && CMDLINE["${KEY}"]="${VALUE}"
-done <<<$(readModelMap "${MODEL}" "cmdline")
+# # Read cmdline
+# while IFS=': ' read KEY VALUE; do
+#   [ -n "${KEY}" ] && CMDLINE["${KEY}"]="${VALUE}"
+# done <<<$(readModelMap "${MODEL}" "cmdline")
 while IFS=': ' read KEY VALUE; do
   [ -n "${KEY}" ] && CMDLINE["${KEY}"]="${VALUE}"
 done <<<$(readConfigMap "cmdline" "${USER_CONFIG_FILE}")
