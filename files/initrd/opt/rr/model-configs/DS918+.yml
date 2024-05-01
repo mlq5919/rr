@@ -13,23 +13,22 @@ synoinfo:
   netif_seq: "0 1 2 3 4 5 6 7"
   buzzeroffen: "0xffff"
 patch:
-- "ramdisk-etc-rc-*.patch"
-- "ramdisk-init-script-v4-*.patch"
-- "ramdisk-post-init-script-*.patch"
-- "ramdisk-disable-root-pwd-*.patch"
-- "ramdisk-disable-disabled-ports-*.patch"
+  - "ramdisk-etc-rc-*.patch"
+  - "ramdisk-init-script-v4-*.patch"
+  - "ramdisk-post-init-script-*.patch"
+  - "ramdisk-disable-root-pwd-*.patch"
+  - "ramdisk-disable-disabled-ports-*.patch"
 platform: "apollolake"
 serial:
   prefix:
-  - "1910"
+    - "1910"
   middle: "PDN"
   suffix: "numeric"
 flags:
-- "movbe"
+  - "movbe"
 dom: 2
 dt: false
 beta: false
-rd-compressed: false
 productvers:
   "7.0":
     kver: "4.4.180"

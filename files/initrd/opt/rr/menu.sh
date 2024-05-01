@@ -31,6 +31,7 @@ SMALLNUM="$(readConfigKey "smallnum" "${USER_CONFIG_FILE}")"
 LAYOUT="$(readConfigKey "layout" "${USER_CONFIG_FILE}")"
 KEYMAP="$(readConfigKey "keymap" "${USER_CONFIG_FILE}")"
 KERNEL="$(readConfigKey "kernel" "${USER_CONFIG_FILE}")"
+RD_COMPRESSED="$(readConfigKey "rd-compressed" "${USER_CONFIG_FILE}")"
 LKM="$(readConfigKey "lkm" "${USER_CONFIG_FILE}")"
 DSMLOGO="$(readConfigKey "dsmlogo" "${USER_CONFIG_FILE}")"
 DIRECTBOOT="$(readConfigKey "directboot" "${USER_CONFIG_FILE}")"
@@ -2303,6 +2304,7 @@ function advancedMenu() {
   NEXT="l"
   while true; do
     rm -f "${TMP_PATH}/menu"
+    echo "9 \"$(TEXT "DSM rd compression:") \Z4${RD_COMPRESSED}\Zn\"" >>"${TMP_PATH}/menu"
     echo "l \"$(TEXT "Switch LKM version:") \Z4${LKM}\Zn\"" >>"${TMP_PATH}/menu"
     echo "j \"$(TEXT "HDD sort(hotplug):") \Z4${HDDSORT}\Zn\"" >>"${TMP_PATH}/menu"
     if [ -n "${PRODUCTVER}" ]; then
@@ -2352,6 +2354,12 @@ function advancedMenu() {
       2>${TMP_PATH}/resp
     [ $? -ne 0 ] && break
     case $(cat "${TMP_PATH}/resp") in
+    9)
+      [ "${RD_COMPRESSED}" = "true" ] && RD_COMPRESSED='false' || RD_COMPRESSED='true'
+      writeConfigKey "rd-compressed" "${RD_COMPRESSED}" "${USER_CONFIG_FILE}"
+      touch ${PART1_PATH}/.build
+      NEXT="9"
+      ;;
     l)
       LKM=$([ "${LKM}" = "dev" ] && echo 'prod' || ([ "${LKM}" = "test" ] && echo 'dev' || echo 'test'))
       writeConfigKey "lkm" "${LKM}" "${USER_CONFIG_FILE}"

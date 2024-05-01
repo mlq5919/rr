@@ -12,21 +12,20 @@ synoinfo:
   netif_seq: "0 1 2 3 4 5 6 7"
   buzzeroffen: "0xffff"
 patch:
-- "ramdisk-etc-rc-*.patch"
-- "ramdisk-init-script-v4-*.patch"
-- "ramdisk-post-init-script-*.patch"
-- "ramdisk-disable-root-pwd-*.patch"
+  - "ramdisk-etc-rc-*.patch"
+  - "ramdisk-init-script-v4-*.patch"
+  - "ramdisk-post-init-script-*.patch"
+  - "ramdisk-disable-root-pwd-*.patch"
 platform: "geminilake"
 serial:
   prefix:
-  - "2010"
-  - "2110"
+    - "2010"
+    - "2110"
   middle: "QWR"
   suffix: "alpha"
 dom: 2
 dt: true
 beta: true
-rd-compressed: false
 productvers:
   "7.0":
     kver: "4.4.180"

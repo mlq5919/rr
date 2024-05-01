@@ -16,21 +16,20 @@ synoinfo:
   netif_seq: "0 1 2 3 4 5 6 7"
   netif_seq_by_dts: "no"
 patch:
-- "ramdisk-etc-rc-*.patch"
-- "ramdisk-init-script-v5-*.patch"
-- "ramdisk-post-init-script-*.patch"
-- "ramdisk-disable-root-pwd-*.patch"
+  - "ramdisk-etc-rc-*.patch"
+  - "ramdisk-init-script-v5-*.patch"
+  - "ramdisk-post-init-script-*.patch"
+  - "ramdisk-disable-root-pwd-*.patch"
 platform: "epyc7002"
 serial:
   prefix:
-  - "2270"
+    - "2270"
   middle: "UMR"
   suffix: "alpha"
   macpre: 9009d0
 dom: -1
 dt: true
 beta: false
-rd-compressed: false
 productvers:
   "7.1":
     kpre: "7.1"

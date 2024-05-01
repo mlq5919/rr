@@ -35,7 +35,6 @@ serial:
 dom: 1
 dt: false
 beta: true
-rd-compressed: false
 productvers:
   "7.0":
     kver: "4.4.180"

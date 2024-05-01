@@ -34,6 +34,7 @@ PRODUCTVER="$(readConfigKey "productver" "${USER_CONFIG_FILE}")"
 BUILDNUM="$(readConfigKey "buildnum" "${USER_CONFIG_FILE}")"
 SMALLNUM="$(readConfigKey "smallnum" "${USER_CONFIG_FILE}")"
 KERNEL="$(readConfigKey "kernel" "${USER_CONFIG_FILE}")"
+RD_COMPRESSED="$(readConfigKey "rd-compressed" "${USER_CONFIG_FILE}")"
 LKM="$(readConfigKey "lkm" "${USER_CONFIG_FILE}")"
 SN="$(readConfigKey "sn" "${USER_CONFIG_FILE}")"
 LAYOUT="$(readConfigKey "layout" "${USER_CONFIG_FILE}")"
@@ -73,7 +74,6 @@ echo -n "."
 PLATFORM="$(readModelKey "${MODEL}" "platform")"
 KVER="$(readModelKey "${MODEL}" "productvers.[${PRODUCTVER}].kver")"
 KPRE="$(readModelKey "${MODEL}" "productvers.[${PRODUCTVER}].kpre")"
-RD_COMPRESSED="$(readModelKey "${MODEL}" "rd-compressed")"
 
 # Sanity check
 if [ -z "${PLATFORM}" -o -z "${KVER}" ]; then
