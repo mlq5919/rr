@@ -28,7 +28,6 @@ patch:
 - "ramdisk-disable-root-pwd-*.patch"
 - "ramdisk-disable-disabled-ports-*.patch"
 platform: "broadwell"
-unique: "synology_broadwell_rs3618xs"
 serial:
   prefix:
   - "0000"

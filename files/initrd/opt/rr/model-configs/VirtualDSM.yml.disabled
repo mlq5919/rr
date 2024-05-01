@@ -26,7 +26,6 @@ patch:
   - "ramdisk-post-init-script-*.patch"
   - "ramdisk-disable-root-pwd-*.patch"
 platform: "kvmx64"
-unique: "synology_kvmx64_virtualdsm"
 serial:
   prefix:
     - "0000"

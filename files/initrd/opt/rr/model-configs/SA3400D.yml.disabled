@@ -35,7 +35,6 @@ patch:
   - "ramdisk-disable-root-pwd-*.patch"
   - "ramdisk-disable-disabled-ports-*.patch"
 platform: "broadwellntbap"
-unique: "synology_broadwellntbap_sa3400d"
 serial:
   prefix:
     - "2350"

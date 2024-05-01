@@ -33,7 +33,6 @@ patch:
 - "ramdisk-post-init-script-*.patch"
 - "ramdisk-disable-root-pwd-*.patch"
 platform: "purley"
-unique: "synology_purley_hd6500"
 serial:
   prefix:
   - "20A0"

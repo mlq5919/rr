@@ -23,7 +23,6 @@ patch:
 - "ramdisk-post-init-script-*.patch"
 - "ramdisk-disable-root-pwd-*.patch"
 platform: "r1000"
-unique: "synology_r1000_1522+"
 serial:
   prefix:
   - "2270"

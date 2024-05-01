@@ -24,7 +24,6 @@ patch:
 - "ramdisk-disable-root-pwd-*.patch"
 - "ramdisk-disable-disabled-ports-*.patch"
 platform: "denverton"
-unique: "synology_denverton_1819+"
 serial:
   prefix:
   - "1890"

@@ -26,7 +26,6 @@ patch:
 - "ramdisk-disable-root-pwd-*.patch"
 - "ramdisk-disable-disabled-ports-*.patch"
 platform: "apollolake"
-unique: "synology_apollolake_718+"
 serial:
   prefix:
   - "1930"

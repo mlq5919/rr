@@ -1817,15 +1817,14 @@ function tryRecoveryDSM() {
     R_SN=""
     R_MAC1=""
     R_MAC2=""
-    unique="$(_get_conf_kv unique "${TMP_PATH}/mdX/.syno/patch/VERSION")"
+    model="$(_get_conf_kv model "${TMP_PATH}/mdX/.syno/patch/GRUB_VER")"
     majorversion="$(_get_conf_kv majorversion "${TMP_PATH}/mdX/.syno/patch/VERSION")"
     minorversion="$(_get_conf_kv minorversion "${TMP_PATH}/mdX/.syno/patch/VERSION")"
     buildnumber="$(_get_conf_kv buildnumber "${TMP_PATH}/mdX/.syno/patch/VERSION")"
     smallfixnumber="$(_get_conf_kv smallfixnumber "${TMP_PATH}/mdX/.syno/patch/VERSION")"
     while read F; do
       M="$(basename ${F} .yml)"
-      UNIQUE=$(readModelKey "${M}" "unique")
-      [ "${unique}" = "${UNIQUE}" ] && R_MODEL="${M}" && break
+      [ "${model}" = "$(readModelKey "${M}" "id")" ] && R_MODEL="${M}" && break
     done <<<$(find "${WORK_PATH}/model-configs" -maxdepth 1 -name \*.yml 2>/dev/null | sort)
     if [ -n "${R_MODEL}" ]; then
       ITEMS="$(readConfigEntriesArray "productvers" "${WORK_PATH}/model-configs/${R_MODEL}.yml" | sort -r)"

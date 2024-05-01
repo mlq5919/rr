@@ -27,7 +27,6 @@ patch:
 - "ramdisk-disable-root-pwd-*.patch"
 - "ramdisk-disable-disabled-ports-*.patch"
 platform: "broadwellnk"
-unique: "synology_broadwellnk_rs3621xs+"
 serial:
   prefix:
   - "20A0"

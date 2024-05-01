@@ -28,7 +28,6 @@ patch:
 - "ramdisk-post-init-script-*.patch"
 - "ramdisk-disable-root-pwd-*.patch"
 platform: "v1000"
-unique: "synology_v1000_rs2423rp+"
 serial:
   prefix:
   - "0000"

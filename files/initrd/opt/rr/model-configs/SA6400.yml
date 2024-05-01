@@ -26,7 +26,6 @@ patch:
 - "ramdisk-post-init-script-*.patch"
 - "ramdisk-disable-root-pwd-*.patch"
 platform: "epyc7002"
-unique: "synology_epyc7002_sa6400"
 serial:
   prefix:
   - "2270"
